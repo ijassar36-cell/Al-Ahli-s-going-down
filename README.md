@@ -22,7 +22,8 @@
             margin: 0;
             min-height: 100vh;
             min-height: 100dvh;
-            padding-top: calc(16.5vh + env(safe-area-inset-top) + 8px);
+            /* تعديل المساحة العلوية لتتناسب مع البار الأصغر */
+            padding-top: calc(24vh + env(safe-area-inset-top) + 8px);
             padding-left: env(safe-area-inset-left);
             padding-right: env(safe-area-inset-right);
             background: radial-gradient(ellipse at 30% 40%, #0a2f2a, #010a08);
@@ -41,7 +42,8 @@
             left: 0;
             width: 100%;
             height: auto;
-            min-height: 30.3vh;
+            /* تقليص الحجم بنسبة 10%: 30.3vh >> 27.3vh */
+            min-height: 27.3vh;
             background: url('https://i.ibb.co/XfY4TcH7/EC3-DE5-E1-58-D1-4-F19-831-D-28142868695-A.png') no-repeat center center;
             background-size: cover;
             border-bottom: 2px solid rgba(0, 255, 200, 0.35);
@@ -50,7 +52,7 @@
             align-items: flex-end;
             justify-content: center;
             z-index: 9999;
-            padding-bottom: 12px;
+            padding-bottom: 8px; /* تقليل بسيط إضافي */
             padding-top: env(safe-area-inset-top);
             box-sizing: border-box;
             pointer-events: none;
@@ -61,8 +63,8 @@
             background: rgba(0, 15, 12, 0.8);
             backdrop-filter: blur(12px);
             border-radius: 50px;
-            padding: 10px 22px;
-            margin-bottom: 12px;
+            padding: 8px 18px;
+            margin-bottom: 10px;
             border: 1px solid rgba(0, 255, 200, 0.7);
             box-shadow: 0 0 14px rgba(0, 255, 200, 0.4), inset 0 0 6px rgba(0, 255, 200, 0.2);
         }
@@ -102,26 +104,6 @@
             text-align: center;
             box-shadow: 0 35px 55px rgba(0, 0, 0, 0.6), 0 0 0 1.5px rgba(0, 255, 200, 0.3), 0 0 20px rgba(0, 255, 200, 0.3);
             border: 1px solid rgba(0, 255, 200, 0.4);
-        }
-
-        .logo-area {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .club-logo {
-            max-width: 27px;
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 8px #00ffcc) contrast(1.05) brightness(1.02);
-            transition: transform 0.2s ease;
-            border-radius: 20px;
-            background: transparent;
-            mix-blend-mode: multiply;
-        }
-        .club-logo:active {
-            transform: scale(0.97);
         }
 
         .counter-box {
@@ -314,10 +296,10 @@
             direction: ltr;
         }
 
+        /* تحسينات للأجهزة المحمولة (كما كانت) */
         @media (max-width: 550px) {
-            body { padding-top: calc(17vh + env(safe-area-inset-top) + 5px); }
+            body { padding-top: calc(15vh + env(safe-area-inset-top) + 5px); } /* تقليل طفيف مع البار الأصغر */
             .card { padding: 18px 14px 24px; border-radius: 40px; margin: 0 12px 20px 12px; }
-            .club-logo { max-width: 38px; }
             .counter-digit { font-size: clamp(0.9rem, 3.2vw, 1.2rem); padding: 1px 4px; }
             .hour-hand { width: 5px; height: 22%; }
             .minute-hand { width: 3.5px; height: 30%; }
@@ -330,6 +312,54 @@
         @media (max-width: 400px) {
             .counter-digit { font-size: clamp(0.8rem, 2.8vw, 1rem); padding: 1px 3px; }
         }
+
+        /* دعم شاشات الكمبيوتر المكتبي */
+        @media (min-width: 1024px) {
+            body {
+                padding-top: calc(22vh + env(safe-area-inset-top) + 8px);
+                align-items: center; /* توسيط عمودي أفضل على الشاشات الكبيرة */
+            }
+            .card {
+                max-width: 720px;
+                margin: 0 auto 30px;
+                padding: 30px 28px 35px;
+            }
+            .top-bar .highlight-box span {
+                font-size: 1rem;
+            }
+            .clock-wrapper {
+                max-width: 380px;
+            }
+            .counter-digit {
+                font-size: clamp(1.2rem, 2vw, 1.7rem);
+                padding: 4px 10px;
+                top: 70%;
+            }
+            .stat-card {
+                min-width: 130px;
+                padding: 12px 22px;
+            }
+            .stat-number {
+                font-size: 2.6rem;
+            }
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            .contact-area {
+                padding: 14px 24px;
+                gap: 18px;
+            }
+        }
+
+        /* لشاشات أكبر (عريضة) */
+        @media (min-width: 1440px) {
+            .card {
+                max-width: 850px;
+            }
+            .clock-wrapper {
+                max-width: 440px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -341,11 +371,7 @@
 </div>
 
 <div class="card">
-    <div class="logo-area">
-        <img class="club-logo" src="https://i.ibb.co/HptMgQ2j/background-removed-background-removed.png" 
-             alt="شعار النادي الأهلي السعودي" 
-             title="النادي الأهلي">
-    </div>
+    <!-- تم حذف صورة شعار الأهلي بناءً على الطلب السابق -->
     
     <div class="counter-box">
         <div class="clock-wrapper">
